@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+  cybercouriers2000:
+    image: ghcr.io/solita/cybercouriers2000:master
+    depends_on:
+    - 'postgres_image'
+    ports:
+        - '8000:80'
+    environment:
+        DefaultConnection: 'Host=postgres_image;port=5432;Username=postgres;Password=docker'
+
+  postgres_image:
+    image: postgres:latest
+    ports:
+        - '5432'
+    restart: always
+    environment:
+        POSTGRES_USER: 'postgres'
+        POSTGRES_PASSWORD: 'docker'
+        POSTGRES_DB: 'cyberdb'
+  
