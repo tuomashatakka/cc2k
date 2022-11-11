@@ -42,15 +42,24 @@ Packages are "dumb" and they will only move with another object, packages are ei
 #### Hardened Packages
 ### Scoreboard
 ## Prerequisites 
+This self-contained API runs on a multi-container instance that contains both the application and the database, to run the multi-container instance you will need Docker (other solutions are available but have not been tested.)
 ### Docker
+You can acquire and install a copy of docker for personal use for free from the link below.
+https://www.docker.com/products/docker-desktop/
 ## Set Up
 ### Using docker-compose
+Open up a command prompt and navigate to the root of the CC2K repository where the file "CC2K.yml" is located, use the command `docker-compose -f cc2k.yml up` to start the application. 
 ### Checking everything is working
+After you run the docker-compose, you will see some output as it initializes the database with no errors. 
+Open up docker-desktop and you should see the multi-container instance running.
+Open up a browser and navigate to http://localhost:8000/swagger/index.html where you should be greeted by the swagger UI.
+From here you are free to query the database.
+### Sanity Checks
+Endpoint: (GET) ~/API/drones - returns 4 patrol drones.
+Endpoint: (GET) ~/API/map - returns 80 skyscrapers, 4 safe zones and 9 drop zones
 
 ## Getting Started
-
 ### Where To Begin
-### Sanity Checks
 ### Some Example Tasks
 ## Troubleshooting/Problems
 ### Reporting bugs
