@@ -10,6 +10,7 @@ The CC2K world consists of three (3) elements.
 - Dynamic Elements - Drones.
 - Static Element - Skyscrapers, Safe zones and Drop zones.
 - Dumb Elements - Packages
+
 These three (3) elements make up the world you will be interacting with.
 
 ### Drones (Dynamic Elements)
@@ -48,14 +49,18 @@ You can acquire and install a copy of docker for personal use for free from the 
 https://www.docker.com/products/docker-desktop/
 ## Set Up
 ### Using docker-compose
-Open up a command prompt and navigate to the root of the CC2K repository where the file "CC2K.yml" is located, use the command `docker-compose -f cc2k.yml up` to start the application. 
+Open up a command prompt and navigate to the root of the CC2K repository where the file "CC2K.yml" is located, use the command `docker-compose -f cc2k.yml up` to start the application.
+
+Running this command will fetch and run 2 containers, an image of our API running on .Net from ghcr.io/solita/cybercouriers2000 and an offical Postgres image from https://hub.docker.com/_/postgres/
+
 ### Checking everything is working
-After you run the docker-compose, you will see some output as it initializes the database with no errors. 
+After you run the docker-compose, you will see some output as it initializes the database (Hopefully with no errors). 
 Open up docker-desktop and you should see the multi-container instance running.
 Open up a browser and navigate to http://localhost:8000/swagger/index.html where you should be greeted by the swagger UI.
 From here you are free to query the database.
 ### Sanity Checks
 Endpoint: (GET) ~/API/drones - returns 4 patrol drones.
+
 Endpoint: (GET) ~/API/map - returns 80 skyscrapers, 4 safe zones and 9 drop zones
 
 ## Getting Started
