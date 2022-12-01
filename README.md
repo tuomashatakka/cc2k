@@ -63,3 +63,6 @@ Endpoint: (GET) ~/API/map - returns 80 skyscrapers, 4 safe zones and 9 drop zone
 ### Some Example Tasks
 ## Troubleshooting/Problems
 ### Reporting bugs
+Nothing is perfect and always open to improvement, we welcome you to break our API and report any findings to your solita contact person (firstname.surname@solita.fi).
+### Know Bugs
+- Docker compose does not currently work with Apple M1 and M2 chips.
