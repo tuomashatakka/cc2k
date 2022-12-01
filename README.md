@@ -22,7 +22,7 @@ Runner drones are user-controlled elements in the CC2K world, runner drones can 
 Runner drones can be controlled directly by the user and move freely around the map on any tile that is not occupied by a Skyscraper.
 
 ####  Patrol Drones
-Patrol drone's movement cannot be influenced, they will move in reaction to any movement the runner drone makes.
+Patrol drone's movement cannot be influenced, they will move in reaction to any movement the runner drone makes. Patrol drones have a detection area of 1 tile around the patrol drone. If the runner drone is detected with in this zone the runner drone will be destoryed and drop any packages it is carrying.
 
 ### Map (Static Elements)
 Map elements and constant and never changing.
@@ -40,8 +40,11 @@ Safe zones are the safe havens for our runner drones, here they will spawn and b
 Packages are "dumb" and they will only move with another object, packages are either stationary on the map or moving while attached to a drone.
 
 #### Sensitive Packages
+One of two package types in CC2K are sensitive packages. Sensitive packages are sensitive to being dropped, if dropped they will be destoryed and no longer usable. Packages can be dropped by either through the runner drone being destoryed or the runner drone ejecting the package.
 #### Hardened Packages
+Harden packages will not be destoryed if dropped and will wait at the dropped location to be picked up again.
 ### Scoreboard
+Scoreboard can be called to get stats from the current game.
 ## Prerequisites 
 This self-contained API runs on a multi-container instance that contains both the application and the database, to run the multi-container instance you will need Docker (other solutions are available but have not been tested.)
 ### Docker
@@ -67,6 +70,8 @@ Endpoint: (GET) ~/API/map - returns 80 skyscrapers, 4 safe zones and 9 drop zone
 ### Where To Begin
 ### Some Example Tasks
 ## Troubleshooting/Problems
+### Getting Stuck
+If at any point you get stuck the current solution is to delete the docker containers and run a new instance, thus resetting the game.
 ### Reporting bugs
 Nothing is perfect and always open to improvement, we welcome you to break our API and report any findings to your solita contact person (firstname.surname@solita.fi).
 ### Know Bugs
