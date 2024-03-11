@@ -5,6 +5,7 @@ import './App.css';
 
 import { mapSlice, updateMap } from './store/modules/map';
 import { useDispatch, useStore } from 'react-redux';
+import GameView from './store/view/GameView';
 
 
 function App() {
@@ -24,12 +25,11 @@ function App() {
   window.state = state
 
   // @ts-ignore
-  const handleUpdate = () => dispatch(updateMap())
+  // const handleUpdate = () => dispatch(updateMap())
 
   return (
     <div className="App">
-      <button className="App-header" onClick={ handleUpdate }>
-      PAINA</button>
+      <GameView />
     </div>
   );
 }

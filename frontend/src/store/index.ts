@@ -1,22 +1,19 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { Selector } from "@reduxjs/toolkit"
+import { useAppDispatch, useAppSelector } from "./hooks"
+import { StateType } from "./modules"
 
-import reducer from './modules'
-import api from '../lib/api'
-import { GetDefaultMiddleware } from '@reduxjs/toolkit/dist/getDefaultMiddleware'
-
-
-const middleware = (getDefaultMiddleware: GetDefaultMiddleware) => {
-  const extraArgument = { api }
-  const result        = getDefaultMiddleware({
-    thunk: { extraArgument }
-  })
-
-  return result
+export const useStateAndDispatch = (selector: Selector) => {
+  const dispatch = useAppDispatch()
+  const state = useAppSelector(selector)
+  return [ state, dispatch ]
 }
 
-const store = configureStore({
-  reducer,
-  middleware,
-})
+export const useAppData = <R>(selector: Selector<StateType, R>) => {
+  const state = useAppSelector(selector)
+  return state
+}
 
-export default store
+export const useDispatch = () => {
+  const dispatch = useAppDispatch()
+  return dispatch
+}
