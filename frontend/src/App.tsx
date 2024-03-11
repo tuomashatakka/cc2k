@@ -1,24 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
+
+import api from './lib/api';
 import './App.css';
 
+import { mapSlice, updateMap } from './store/modules/map';
+import { useDispatch, useStore } from 'react-redux';
+
+
 function App() {
+
+  const dispatch = useDispatch();
+  const state = useStore();
+
+  // @ts-ignore
+  window.api = api
+
+  // @ts-ignore
+  window.actions= mapSlice
+  // @ts-ignore
+  window.action = () => dispatch(updateMap())
+
+  // @ts-ignore
+  window.state = state
+
+  // @ts-ignore
+  const handleUpdate = () => dispatch(updateMap())
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button className="App-header" onClick={ handleUpdate }>
+      PAINA</button>
     </div>
   );
 }
