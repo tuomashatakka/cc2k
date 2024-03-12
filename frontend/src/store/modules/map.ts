@@ -1,7 +1,7 @@
-import { ActionReducerMapBuilder, Dispatch, GetState, createSelector, createSlice } from "@reduxjs/toolkit"
+/* eslint-disable no-unused-vars */
+import { Dispatch, GetState, createSelector } from '@reduxjs/toolkit'
 import type Api from '../../lib/api'
-import { createSelectorHook } from "react-redux"
-import { StateType } from "."
+import { StateType } from '.'
 
 type SkyScraperType = {
 }
@@ -10,7 +10,7 @@ type SafeZoneType = {}
 
 type DropZoneType = {}
 
-enum STATUS_TYPE {
+export enum STATUS_TYPE {
   UNINITIALIZED,
   LOADING,
   SUCCEEDED,
@@ -38,56 +38,46 @@ export const initialState: MapStateType = {
   dropZones:    [],
 }
 
-const updateMapDimensionsAction = (payload: MapDataType) => ({
-  type: 'map/updateDimensions',
-  payload,
+const updateMapDimensionsAction = ({ width, height }: MapDataType) => ({
+  type:     'map/updateDimensions',
+  payload:  { width, height },
 })
 
 const updateMapNodesAction = (payload: MapDataType) => ({
-  type: 'map/updateNodes',
+  type:     'map/updateNodes',
   payload,
 })
 
 const updateMapFetchStateAction = (status: STATUS_TYPE, error: Error | null = null) => ({
-  type: 'map/updateNodes',
-  payload: { status, error },
+  type:       'map/updateFetchState',
+  payload:    { status, error },
 })
 
-const updateMapFetchState = (state: MapStateType, action: { payload: {status: STATUS_TYPE, error: Error | null }}) => {
-  state._state = [ action.payload.status, action.payload.error ]
-}
+
+
+const updateMapFetchState = (state: MapStateType, action: { payload: {status: STATUS_TYPE, error: Error | null }}) => ({ ...state, _state: [ action.payload.status, action.payload.error ]})
 
 const updateMapDimensions = (state: MapStateType, action: { payload: MapDataType}) => {
-  state.width = action.payload.width
-  state.height = action.payload.height
+  const { width, height } = action.payload
+  return { ...state, width, height }
 }
 
 const updateMapNodes = (state: MapStateType, action: { payload: MapDataType}) => {
-  state.skyScrapers = action.payload.skyScrapers
-  state.safeZones   = action.payload.safeZones
-  state.dropZones   = action.payload.dropZones
+  const { dropZones, safeZones, skyScrapers } = action.payload
+  return { ...state, dropZones, safeZones, skyScrapers }
 }
 
-export const updateMap = () => {
-  return async (dispatch: Dispatch, getState: GetState<MapStateType>, { api }: { api: typeof Api }) => {
-    dispatch(updateMapFetchStateAction(STATUS_TYPE.LOADING))
-    try {
-      const map = await api.getMap()
-      console.info({map})
-      dispatch(updateMapDimensionsAction(map))
-      dispatch(updateMapNodesAction(map))
-      dispatch(updateMapFetchStateAction(STATUS_TYPE.SUCCEEDED))
-    }
-    catch (err) {
-      dispatch(updateMapFetchStateAction(STATUS_TYPE.FAILED, err as Error))
-    }
+export const updateMap = () => async (dispatch: Dispatch, getState: GetState<MapStateType>, { api }: { api: typeof Api }) => {
+  dispatch(updateMapFetchStateAction(STATUS_TYPE.LOADING))
+  try {
+    const map = await api.getMap()
+    dispatch(updateMapDimensionsAction(map))
+    dispatch(updateMapNodesAction(map))
+    dispatch(updateMapFetchStateAction(STATUS_TYPE.SUCCEEDED))
   }
-}
-
-const reducers = {
-  updateMapFetchState,
-  updateMapDimensions,
-  updateMapNodes,
+  catch (err) {
+    dispatch(updateMapFetchStateAction(STATUS_TYPE.FAILED, err as Error))
+  }
 }
 
 export const selectMapData        = (state: StateType) => state.map
@@ -113,47 +103,11 @@ export const selectMapFetchState = createSelector(
   [ selectMapData ], selectFetchState)
 
 
-// const extraReducers = (builder: ActionReducerMapBuilder<MapStateType>, ...a: any[]) => {
-
-//   console.warn("BUILDER", builder, a)
-
-//   builder
-//     .addCase(fetchMap.pending, (state, action) => {
-//       state._state = [ STATUS_TYPE.LOADING, null ]
-//     })
-
-//     .addCase(fetchMap.fulfilled, (state, action, ...args) => {
-//       console.warn(state, action , args, "!!!!")
-//       state._state  = [ STATUS_TYPE.SUCCEEDED, null ]
-
-//       // @ts-ignore
-//       state.height  = action.payload?.height || 0
-
-//       // @ts-ignore
-//       state.width   = action.payload?.width || 0
-//     })
-//     .addCase(fetchMap.rejected, (state, action) => {
-//       // @ts-ignore
-//       state._state  = [ STATUS_TYPE.FAILED, action.error ]
-//       state.width   = 0
-//       state.height  = 0
-//     })
-// }
-
-const mapSlice = createSlice({
-  name: 'map',
-  initialState,
-  reducers,
-  // extraReducers,
-})
-
-
-const actions = { ...mapSlice.actions }
-
-export {
-  actions,
-  reducers,
-  mapSlice,
+export default function mapReducer (state: MapStateType, action: any) {
+  switch (action.type) {
+  case 'map/updateNodes':       return updateMapNodes(state, action)
+  case 'map/updateDimensions':  return updateMapDimensions(state, action)
+  case 'map/updateFetchState':  return updateMapFetchState(state, action)
+  default:                      return initialState
+  }
 }
-
-export default mapSlice.reducer

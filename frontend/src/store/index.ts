@@ -1,6 +1,6 @@
-import { Selector } from "@reduxjs/toolkit"
-import { useAppDispatch, useAppSelector } from "./hooks"
-import { StateType } from "./modules"
+import { Selector } from '@reduxjs/toolkit'
+import { useAppDispatch, useAppSelector } from './hooks'
+import { StateType } from './modules'
 
 export const useStateAndDispatch = (selector: Selector) => {
   const dispatch = useAppDispatch()

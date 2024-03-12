@@ -1,23 +1,19 @@
-import React from 'react';
+import api from './lib/api'
+import './App.css'
 
-import api from './lib/api';
-import './App.css';
-
-import { mapSlice, updateMap } from './store/modules/map';
-import { useDispatch, useStore } from 'react-redux';
-import GameView from './store/view/GameView';
+import { updateMap } from './store/modules/map'
+import { useDispatch, useStore } from 'react-redux'
+import GameView from './store/view/GameView'
 
 
-function App() {
+function App () {
 
-  const dispatch = useDispatch();
-  const state = useStore();
+  const dispatch = useDispatch()
+  const state = useStore()
 
   // @ts-ignore
   window.api = api
 
-  // @ts-ignore
-  window.actions= mapSlice
   // @ts-ignore
   window.action = () => dispatch(updateMap())
 
@@ -28,10 +24,10 @@ function App() {
   // const handleUpdate = () => dispatch(updateMap())
 
   return (
-    <div className="App">
+    <div className='App'>
       <GameView />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
