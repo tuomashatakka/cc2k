@@ -1,78 +1,12 @@
-# CyberCouriers2000
-## What is CyberCouriers2000
-Cyber Couriers 2000 (CC2K) is a simple turn-based game where you use a REST API to interact and control a drone on a square tile map, with CC2K you are free to showcase your skills and imagination in frontend development using whatever languages and frameworks you desire.
 
-Below you will find an overview of what CC2K is and hopefully, start to put together a vision of how it can be used. If you wish to just get coding, feel free to skip to "Set Up" and "Getting Started"
-## Overview
-Entering the CC2K world you will be tasked with taking control of a runner drone, picking up and dropping off packages while traversing an obstacle-filled map.
-The CC2K world consists of three (3) elements.
 
-- Dynamic Elements - Drones.
-- Static Element - Skyscrapers, Safe zones and Drop zones.
-- Dumb Elements - Packages
+[![forthebadge](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxODUuMzgzMzMxMjk4ODI4MTIiIGhlaWdodD0iMzUiIHZpZXdCb3g9IjAgMCAxODUuMzgzMzMxMjk4ODI4MTIgMzUiPjxyZWN0IHdpZHRoPSI5MC44NDk5OTg0NzQxMjExIiBoZWlnaHQ9IjM1IiBmaWxsPSIjZmZiOGQ0Ii8+PHJlY3QgeD0iOTAuODQ5OTk4NDc0MTIxMSIgd2lkdGg9Ijk0LjUzMzMzMjgyNDcwNzAzIiBoZWlnaHQ9IjM1IiBmaWxsPSIjZmYzMTgzIi8+PHRleHQgeD0iNDUuNDI0OTk5MjM3MDYwNTUiIHk9IjE3LjUiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtZmFtaWx5PSInUm9ib3RvJywgc2Fucy1zZXJpZiIgZmlsbD0iI2I2MDQ0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgYWxpZ25tZW50LWJhc2VsaW5lPSJtaWRkbGUiIGxldHRlci1zcGFjaW5nPSIyIj5JVCBXT1JLRUQ8L3RleHQ+PHRleHQgeD0iMTM4LjExNjY2NDg4NjQ3NDYiIHk9IjE3LjUiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtZmFtaWx5PSInTW9udHNlcnJhdCcsIHNhbnMtc2VyaWYiIGZpbGw9IiNmMGU1ZWEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSI5MDAiIGFsaWdubWVudC1iYXNlbGluZT0ibWlkZGxlIiBsZXR0ZXItc3BhY2luZz0iMiI+QVQgSE9NRTwvdGV4dD48L3N2Zz4=)](https://forthebadge.com) [![forthebadge](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjIuMDY2Njg0NzIyOTAwNCIgaGVpZ2h0PSIzNSIgdmlld0JveD0iMCAwIDIyMi4wNjY2ODQ3MjI5MDA0IDM1Ij48cmVjdCB3aWR0aD0iNjUuMDY2NjY5NDY0MTExMzMiIGhlaWdodD0iMzUiIGZpbGw9IiM5MDEzZmUiLz48cmVjdCB4PSI2NS4wNjY2Njk0NjQxMTEzMyIgd2lkdGg9IjE1Ny4wMDAwMTUyNTg3ODkwNiIgaGVpZ2h0PSIzNSIgZmlsbD0iIzM3MGU1YyIvPjx0ZXh0IHg9IjMyLjUzMzMzNDczMjA1NTY2NCIgeT0iMTcuNSIgZm9udC1zaXplPSIxMiIgZm9udC1mYW1pbHk9IidSb2JvdG8nLCBzYW5zLXNlcmlmIiBmaWxsPSIjZjdlZWZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBhbGlnbm1lbnQtYmFzZWxpbmU9Im1pZGRsZSIgbGV0dGVyLXNwYWNpbmc9IjIiPlNBRkFSSTwvdGV4dD48dGV4dCB4PSIxNDMuNTY2Njc3MDkzNTA1ODYiIHk9IjE3LjUiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtZmFtaWx5PSInTW9udHNlcnJhdCcsIHNhbnMtc2VyaWYiIGZpbGw9IiNjMDg4ZjEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSI5MDAiIGFsaWdubWVudC1iYXNlbGluZT0ibWlkZGxlIiBsZXR0ZXItc3BhY2luZz0iMiI+Tk9UIFNVUFBPUlRFRDwvdGV4dD48L3N2Zz4=)](https://forthebadge.com)
 
-These three (3) elements make up the world you will be interacting with.
+# Project structure
 
-### Drones (Dynamic Elements)
-Drones are reactive to user input and will need to be constantly monitored.
+```frontend/``` [kaikki coodi täältä](frontend/README.md)
 
-#### Runner Drones
-Runner drones are user-controlled elements in the CC2K world, runner drones can move, pick up, drop off and eject packages.
+```frontend/README.md``` [saatesanat](frontend/README.md)
 
-Runner drones can be controlled directly by the user and move freely around the map on any tile that is not occupied by a Skyscraper.
 
-####  Patrol Drones
-Patrol drone's movement cannot be influenced, they will move in reaction to any movement the runner drone makes. Patrol drones have a detection area of 1 tile around the patrol drone. If the runner drone is detected with in this zone the runner drone will be destoryed and drop any packages it is carrying.
-
-### Map (Static Elements)
-Map elements and constant and never changing.
-
-#### Skyscrapers
-skyscrapers make up a good portion of the map and cannot be interacted with.
-
-#### Drop-zones
-Drop zones are the nodes where packages spawn and travel between.
-
-#### Safe-zones
-Safe zones are the safe havens for our runner drones, here they will spawn and be safe from detection. 
-
-### Packages (Dumb Elements)
-Packages are "dumb" and they will only move with another object, packages are either stationary on the map or moving while attached to a drone.
-
-#### Sensitive Packages
-One of two package types in CC2K are sensitive packages. Sensitive packages are sensitive to being dropped, if dropped they will be destoryed and no longer usable. Packages can be dropped by either through the runner drone being destoryed or the runner drone ejecting the package.
-#### Hardened Packages
-Harden packages will not be destoryed if dropped and will wait at the dropped location to be picked up again.
-### Scoreboard
-Scoreboard can be called to get stats from the current game.
-## Prerequisites 
-This self-contained API runs on a multi-container instance that contains both the application and the database, to run the multi-container instance you will need Docker (other solutions are available but have not been tested.)
-### Docker
-You can acquire and install a copy of docker for personal use for free from the link below.
-https://www.docker.com/products/docker-desktop/
-## Set Up
-### Using docker-compose
-Open up a command prompt and navigate to the root of the CC2K repository where the file "CC2K.yml" is located, use the command `docker-compose -f cc2k.yml up` to start the application.
-
-Running this command will fetch and run 2 containers, an image of our API running on .Net from ghcr.io/solita/cybercouriers2000 and an offical Postgres image from https://hub.docker.com/_/postgres/
-
-### Checking everything is working
-After you run the docker-compose, you will see some output as it initializes the database (Hopefully with no errors). 
-Open up docker-desktop and you should see the multi-container instance running.
-Open up a browser and navigate to http://localhost:8000/swagger/index.html where you should be greeted by the swagger UI.
-From here you are free to query the database.
-### Sanity Checks
-Endpoint: (GET) ~/API/drones - returns 4 patrol drones.
-
-Endpoint: (GET) ~/API/map - returns 80 skyscrapers, 4 safe zones and 9 drop zones
-
-## Getting Started
-### Where To Begin
-### Some Example Tasks
-## Troubleshooting/Problems
-### Getting Stuck
-If at any point you get stuck the current solution is to delete the docker containers and run a new instance, thus resetting the game.
-### Reporting bugs
-Nothing is perfect and always open to improvement, we welcome you to break our API and report any findings to your solita contact person (firstname.surname@solita.fi).
-### Know Bugs
-- Docker compose does not currently work with Apple M1 and M2 chips.
+KAIKKI REPON GRAFIIKKA VAPAAN KÄYTÖN LISENSSILLÄ.
