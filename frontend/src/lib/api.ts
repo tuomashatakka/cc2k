@@ -9,15 +9,12 @@ const getUrl = (...path: string[]) =>
     .map(item => item)
     .join('/')
 
-const makeRequest = async (endpoint: string, options = {}) =>
+const makeRequest = async (endpoint: string, options = {}) => {
 
-  // const url       = getUrl(endpoint)
-  require('./mock/getMap.json')
-
-// const response  = await fetch(url, options)
-
-// return await response.json()
-
+  const url       = getUrl(endpoint)
+  const response  = await fetch(url, options)
+  return await response.json()
+}
 
 const getMap      = () => makeRequest('map', { method: 'get' })
 const getDrones   = () => makeRequest('drones', { method: 'get' })
